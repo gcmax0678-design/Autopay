@@ -8,7 +8,10 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - run: yes | sdkmanager --licenses > /dev/null; sdkmanager "platforms;android-34" "build-tools;34.0.0"
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+          log-accepted-android-sdk-licenses: false
       - run: unzip -q *.zip
       - run: |
           cd bkash-autopay/android-app
